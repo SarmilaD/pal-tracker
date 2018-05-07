@@ -1,0 +1,50 @@
+buildscript {
+    repositories {
+        maven { url "http://platform-acceleration-lab-maven.s3.amazonaws.com" }
+        jcenter()
+    }
+
+    dependencies {
+        classpath "io.pivotal.pal.assignments:assignments-plugin:1.2.6"
+    }
+}
+
+plugins {
+    id "java"
+    id "org.springframework.boot" version "1.5.4.RELEASE"
+}
+
+repositories {
+    mavenCentral()
+    maven { url "http://platform-acceleration-lab-maven.s3.amazonaws.com" }
+    jcenter()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
+
+
+
+apply plugin: "io.pivotal.pal.assignments.plugin"
+
+assignments {
+    apiUrl = "https://caddy.pal.pivotal.io"
+    emails = ["sdangol@ford.com",
+            "ldoppala@ford.com"
+]
+    cohortIdentifier = 349802269
+}
+
+defaultTasks "tasks"
+
+
+bootRun.environment([
+        "WELCOME_MESSAGE": "hello",
+])
+
+test.environment([
+        "WELCOME_MESSAGE": "Hello from test",
+])
