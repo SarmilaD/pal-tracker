@@ -7,4 +7,4 @@
 applications:
 - name: pal-tracker
   path: build/libs/pal-tracker.jar
-  host: sd-pal-tracker
+  host: nd-pal-tracker
